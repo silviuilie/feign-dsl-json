@@ -1,6 +1,6 @@
 # feign dsl-json
 
-Feign encoder/decoder for dsl-json
+feign encoder/decoder for dsl-json
 
 # related
 
