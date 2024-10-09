@@ -21,7 +21,7 @@ public class DslJsonDecoder implements Decoder {
     public Object decode(Response response, Type type) throws IOException,
             DecodeException, FeignException {
 
-        DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime());
+        DslJson<Objkect> dslJson = new DslJson<>(Settings.withRuntime());
 
         return dslJson.deserialize(type, response.body().asInputStream());
     }
