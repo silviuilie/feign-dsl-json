@@ -17,6 +17,40 @@ import java.lang.reflect.Type;
  **/
 public class DslJsonEncoder implements Encoder {
 
+    public static class testClass {
+        private String name;
+        private String secondName;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSecondName() {
+            return secondName;
+        }
+
+        public void setSecondName(String secondName) {
+            this.secondName = secondName;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        TestPayload payload = new TestPayload("name", "no");
+
+        RequestTemplate template = new RequestTemplate();
+
+        new DslJsonEncoder().encode(
+                payload,
+                TestPayload.class,
+                template
+        );
+    }
+
     @Override
     public void encode(Object o, Type type, RequestTemplate requestTemplate) throws EncodeException {
 //        DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
@@ -27,19 +61,33 @@ public class DslJsonEncoder implements Encoder {
         //writer should be reused. For per thread reuse use ThreadLocal pattern
         JsonWriter writer = dslJson.newWriter();
 
+
+
         try {
-            dslJson.serialize(writer, o);
+            testClass sp = new testClass() {{
+                this.setName("a");
+                this.setSecondName("B");
+            }};
+            testClass sp2 = new testClass();
+            sp2.setName("2");
+            sp2.setSecondName("22");
+            dslJson.serialize(writer, sp);
+//            dslJson.serialize(writer, o);
             System.out.println("writer = " + writer);
- 
+            dslJson.serialize(writer, sp2);
+//            dslJson.serialize(writer, o);
+            System.out.println("writer = " + writer);
+
             //resulting buffer with JSON
             byte[] buffer = writer.getByteBuffer();
             //end of buffer
             int size = writer.size();
             System.out.println(writer);
 
+            if (true) return;
             //deserialization using byte[] API
-            SimplePayload deser = dslJson.deserialize(SimplePayload.class, buffer, size);
-            System.out.println("deser = " + deser);
+//            TestPayload deser = dslJson.deserialize(TestPayload.class, buffer, size);
+//            System.out.println("deser = " + deser);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

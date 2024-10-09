@@ -1,7 +1,5 @@
 package eu.pm.serdes.dslplatform.json;
 
-import com.dslplatform.json.CompiledJson;
-
 /**
  * TODO : comment !
  *
@@ -9,12 +7,12 @@ import com.dslplatform.json.CompiledJson;
  * @since 0.0.1 on feign-dsl-json
  **/
 //@CompiledJson
-public   class SimplePayload {
+public   class TestPayload {
 
-    String name;
-    String value;
+    public String name;
+    public String value;
 
-    public SimplePayload(String name, String value) {
+    public TestPayload(String name, String value) {
         this.name = name;
         this.value = value;
     }

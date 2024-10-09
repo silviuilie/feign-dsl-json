@@ -32,6 +32,6 @@ public class DslJsonDecoderTest {
                 .build();
 
 
-        System.out.println("response = " +  decoder.decode(response, SimplePayload.class));
+        System.out.println("response = " +  decoder.decode(response, TestPayload.class));
     }
 }

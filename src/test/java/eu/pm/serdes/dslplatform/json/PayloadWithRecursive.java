@@ -9,7 +9,7 @@ import java.util.List;
  * @author silviu ilie
  * @since on http-clients
  **/
-@CompiledJson
+//@CompiledJson
 public class PayloadWithRecursive {
 
     String name;

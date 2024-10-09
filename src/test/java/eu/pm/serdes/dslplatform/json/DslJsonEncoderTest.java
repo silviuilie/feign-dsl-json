@@ -10,7 +10,7 @@ public class DslJsonEncoderTest {
 
     @Test
     public void basic() {
-        SimplePayload payload = new SimplePayload("name", "no");
+        TestPayload payload = new TestPayload("name", "no");
 
         RequestTemplate template = new RequestTemplate();
 

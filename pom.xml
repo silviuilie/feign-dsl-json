@@ -7,6 +7,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <exec.mainClass>eu.pm.serdes.dslplatform.json.DslJsonEncoder</exec.mainClass>
     </properties>
 
     <dependencyManagement>
@@ -40,6 +41,18 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <!-- disabled annotation processor so only reflection is used -->
+                    <compilerArgument>-proc:none</compilerArgument>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
