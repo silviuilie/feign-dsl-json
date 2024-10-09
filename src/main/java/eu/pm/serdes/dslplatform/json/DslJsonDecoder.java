@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 
 /**
  * @author silviu ilie
+ * 
  * @since on http-clients
  **/
 public class DslJsonDecoder implements Decoder {
