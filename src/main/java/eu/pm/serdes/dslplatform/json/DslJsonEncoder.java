@@ -7,7 +7,6 @@ import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
@@ -17,91 +16,49 @@ import java.lang.reflect.Type;
  **/
 public class DslJsonEncoder implements Encoder {
 
-    public static class testClass {
-        private String name;
-        private String secondName;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getSecondName() {
-            return secondName;
-        }
-
-        public void setSecondName(String secondName) {
-            this.secondName = secondName;
-        }
-    }
-
-    public static void main(String[] args) {
-
-        TestPayload payload = new TestPayload("name", "no");
-
-        RequestTemplate template = new RequestTemplate();
-
-        new DslJsonEncoder().encode(
-                payload,
-                TestPayload.class,
-                template
-        );
-    }
+    //Runtime configuration needs to be explicitly enabled
+    DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime());
+    //writer should be reused. For per thread reuse use ThreadLocal pattern
+    JsonWriter writer = dslJson.newWriter();
 
     @Override
-    public void encode(Object o, Type type, RequestTemplate requestTemplate) throws EncodeException {
-//        DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
-//        DslJson.Settings settings = Settings.withRuntime()
-//                .withJavaConverters(true)
-//                .includeServiceLoader();
-        DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime()); //Runtime configuration needs to be explicitly enabled
-        //writer should be reused. For per thread reuse use ThreadLocal pattern
-        JsonWriter writer = dslJson.newWriter();
-
-
+    public void encode(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
 
         try {
-            testClass sp = new testClass() {{
-                this.setName("a");
-                this.setSecondName("B");
-            }};
-            testClass sp2 = new testClass();
-            sp2.setName("2");
-            sp2.setSecondName("22");
-            dslJson.serialize(writer, sp);
-//            dslJson.serialize(writer, o);
-            System.out.println("writer = " + writer);
-            dslJson.serialize(writer, sp2);
-//            dslJson.serialize(writer, o);
-            System.out.println("writer = " + writer);
+            dslJson.serialize(writer, object);
 
             //resulting buffer with JSON
             byte[] buffer = writer.getByteBuffer();
             //end of buffer
             int size = writer.size();
-            System.out.println(writer);
 
-            if (true) return;
-            //deserialization using byte[] API
-//            TestPayload deser = dslJson.deserialize(TestPayload.class, buffer, size);
-//            System.out.println("deser = " + deser);
+            System.out.println("writer.size = " + size);
+            System.out.println("buffer.length = " + buffer.length);
+
+            requestTemplate.bodyTemplate(writer.toString());
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+
+    /**
+     * TODO : remove
+
+    private void _old_encode (Object object, Type type, RequestTemplate requestTemplate){
 
 
         ByteArrayOutputStream baOS = new ByteArrayOutputStream();
 
         try {
 
-            dslJson.serialize(o, baOS);
+            dslJson.serialize(object, baOS);
             requestTemplate.bodyTemplate(baOS.toString());
 
         } catch (IOException ioEx) {
             throw new EncodeException(ioEx.getMessage(), ioEx);
         }
-    }
+    }*/
 }
