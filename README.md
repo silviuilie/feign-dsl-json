@@ -17,12 +17,12 @@ public Feign defaultClient () {
 ```    
  
 
-
+<!--
 ## issues : 
 
 1. Settings.withRuntime() - slow, standard etc
 
-`(Settings.withRuntime())` is not sufficent :
+`(Settings.withRuntime())` is not sufficient :
 
 > com.dslplatform.json.ConfigurationException: Unable to serialize provided object. Failed to find serializer for: class eu.pm.serdes.dslplatform.json.TestPayload
 
@@ -31,7 +31,7 @@ public Feign defaultClient () {
 `(Settings.withRuntime())` enable (!) maven-compiler-plugin `-proc:none` compiler argument 
 
 2. `Settings.basicSetup` requires `@CompiledJson`
-
+-->
 
 
 todo  :
