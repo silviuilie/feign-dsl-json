@@ -16,10 +16,16 @@ import java.lang.reflect.Type;
  **/
 public class DslJsonEncoder implements Encoder {
 
-    //Runtime configuration needs to be explicitly enabled
-    DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime());
+    DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
     //writer should be reused. For per thread reuse use ThreadLocal pattern
     JsonWriter writer = dslJson.newWriter();
+
+    public byte[] encoded(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
+
+        this.encode(object, type, requestTemplate);
+
+        return requestTemplate.body();
+    }
 
     @Override
     public void encode(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
@@ -47,18 +53,18 @@ public class DslJsonEncoder implements Encoder {
     /**
      * TODO : remove
 
-    private void _old_encode (Object object, Type type, RequestTemplate requestTemplate){
+     private void _old_encode (Object object, Type type, RequestTemplate requestTemplate){
 
 
-        ByteArrayOutputStream baOS = new ByteArrayOutputStream();
+     ByteArrayOutputStream baOS = new ByteArrayOutputStream();
 
-        try {
+     try {
 
-            dslJson.serialize(object, baOS);
-            requestTemplate.bodyTemplate(baOS.toString());
+     dslJson.serialize(object, baOS);
+     requestTemplate.bodyTemplate(baOS.toString());
 
-        } catch (IOException ioEx) {
-            throw new EncodeException(ioEx.getMessage(), ioEx);
-        }
-    }*/
+     } catch (IOException ioEx) {
+     throw new EncodeException(ioEx.getMessage(), ioEx);
+     }
+     }*/
 }

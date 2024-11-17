@@ -15,7 +15,7 @@ import java.lang.reflect.Type;
  **/
 public class DslJsonDecoder implements Decoder {
 
-    private final DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime());
+    private final DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
 
     @Override
     public Object decode(Response response, Type type) throws IOException, FeignException {
