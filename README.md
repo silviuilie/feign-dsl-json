@@ -10,16 +10,12 @@ public Feign defaultClient () {
   return Feign.builder()
              .decoder(new DslJsonDecoder())
              .encoder(new DslJsonEncoder())
-              // ..other 
+              // ..  
           .build()
   ;
 }
 ```    
-
-
-*TODO :*
-  - sync with gitlab (gitlab=>github): something like https://dev.to/brunorobert/github-and-gitlab-sync-44mn
-
+ 
 
 
 ## issues : 
