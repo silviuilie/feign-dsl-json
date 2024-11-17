@@ -1,5 +1,6 @@
 
-Usage : 
+
+# Usage : 
 
 1. first, annotate your classes with `@CompiledJson`
 2. use the encoder/decoder classes for the client :
