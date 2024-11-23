@@ -13,7 +13,6 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -30,7 +29,7 @@ public class DslJsonDecoderTest {
     @Test
     public void decode() throws IOException {
 
-        TestPayload body = new TestPayload("name-goes-here","value-goes-here");
+        TestPayload body = new TestPayload("name-goes-here", "value-goes-here");
         dslJson.serialize(writer, TestPayload.class, body);
 
 

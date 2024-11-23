@@ -3,7 +3,6 @@ package eu.pm;
 import eu.pm.serdes.dslplatform.json.DslJsonDecoder;
 import eu.pm.serdes.dslplatform.json.DslJsonEncoder;
 import feign.Feign;
-import okhttp3.OkHttpClient;
 
 /**
  * TODO : comment !
@@ -13,7 +12,7 @@ import okhttp3.OkHttpClient;
  **/
 public class Client {
 
-    public Feign defaultClient () {
+    public Feign defaultClient() {
         return Feign.builder()
                 .decoder(new DslJsonDecoder())
                 .encoder(new DslJsonEncoder())
@@ -27,7 +26,7 @@ public class Client {
 //                .requestInterceptor(new BasicAuthRequestInterceptor(clientConfig.getUser(), clientConfig.getPassword()))
 //                .target("localhost");
                 .build()
-        ;
+                ;
     }
 
     public void main(String[] args) {

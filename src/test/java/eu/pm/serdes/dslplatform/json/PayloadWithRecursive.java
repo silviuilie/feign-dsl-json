@@ -1,7 +1,5 @@
 package eu.pm.serdes.dslplatform.json;
 
-import com.dslplatform.json.CompiledJson;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class PayloadWithRecursive {
     public PayloadWithRecursive() {
     }
 
-    public PayloadWithRecursive(String name, String value ) {
+    public PayloadWithRecursive(String name, String value) {
         this.name = name;
         this.value = value;
 
@@ -30,7 +28,7 @@ public class PayloadWithRecursive {
     public PayloadWithRecursive(String name, String value, List<PayloadWithRecursive> list) {
         this.name = name;
         this.value = value;
-        if ( null != list) {
+        if (null != list) {
             this.list = list;
         }
     }
