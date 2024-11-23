@@ -31,7 +31,6 @@ public Feign defaultClient () {
 `(Settings.withRuntime())` enable (!) maven-compiler-plugin `-proc:none` compiler argument 
 
 2. `Settings.basicSetup` requires `@CompiledJson`
--->
 
 
 todo  :
@@ -40,4 +39,7 @@ https://stackoverflow.com/questions/49857531/dsl-json-java-io-ioexception-unable
 
 
 https://github.com/ngs-doo/dsl-json/blob/master/library/src/main/java/com/dslplatform/json/DslJson.java
+-->
+
+
 
