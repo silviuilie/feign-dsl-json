@@ -3,6 +3,7 @@ package eu.pm.serdes.dslplatform.json;
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.runtime.Settings;
+import feign.Logger;
 import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
@@ -17,8 +18,10 @@ import java.lang.reflect.Type;
 public class DslJsonEncoder implements Encoder {
 
     DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
+
     //writer should be reused. For per thread reuse use ThreadLocal pattern
     JsonWriter writer = dslJson.newWriter();
+
 
     public byte[] encoded(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
 
@@ -38,33 +41,19 @@ public class DslJsonEncoder implements Encoder {
             //end of buffer
             int size = writer.size();
 
-            System.out.println("writer.size = " + size);
-            System.out.println("buffer.length = " + buffer.length);
+            log("writer.size = " + size);
+            log("buffer.length = " + buffer.length);
 
             requestTemplate.bodyTemplate(writer.toString());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new EncodeException("failed to serialize with dsl-json with" + e.getMessage(), e);
         }
 
     }
 
+    private void log(String logLine) {
+        System.out.println(logLine);
+    }
 
-    /**
-     * TODO : remove
-
-     private void _old_encode (Object object, Type type, RequestTemplate requestTemplate){
-
-
-     ByteArrayOutputStream baOS = new ByteArrayOutputStream();
-
-     try {
-
-     dslJson.serialize(object, baOS);
-     requestTemplate.bodyTemplate(baOS.toString());
-
-     } catch (IOException ioEx) {
-     throw new EncodeException(ioEx.getMessage(), ioEx);
-     }
-     }*/
 }
