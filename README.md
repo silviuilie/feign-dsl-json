@@ -31,8 +31,8 @@ public Feign defaultClient() {
 
 
 todo  :
-
-tests? benchmarks ?
+ 
+benchmarks (homemade/openjdk jmh)?
 
 https://stackoverflow.com/questions/49857531/dsl-json-java-io-ioexception-unable-to-serialize-provided-object-failed-to-fi
 
