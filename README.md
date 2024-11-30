@@ -32,7 +32,7 @@ public Feign defaultClient() {
 
 todo  :
  
-benchmarks (homemade/openjdk jmh)?
+benchmarks (homemade/openjdk jmh (source)- https://github.com/openjdk/jmh/blob/master/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_02_BenchmarkModes.java)?
 
 https://stackoverflow.com/questions/49857531/dsl-json-java-io-ioexception-unable-to-serialize-provided-object-failed-to-fi
 
