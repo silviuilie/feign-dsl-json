@@ -32,6 +32,8 @@ public Feign defaultClient() {
 
 todo  :
 
+tests? benchmarks ?
+
 https://stackoverflow.com/questions/49857531/dsl-json-java-io-ioexception-unable-to-serialize-provided-object-failed-to-fi
 
 https://github.com/ngs-doo/dsl-json/blob/master/library/src/main/java/com/dslplatform/json/DslJson.java
