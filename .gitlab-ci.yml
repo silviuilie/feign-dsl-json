@@ -7,7 +7,7 @@ default:
 
 variables:
 #  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
-  MAVEN_CLI_OPTS: "-s --batch-mode"
+  MAVEN_CLI_OPTS: " --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 stages:
