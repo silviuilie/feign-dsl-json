@@ -1,44 +1,27 @@
-package eu.pm;
+package eu.pm.serdes;
 
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.runtime.Settings;
-import eu.pm.serdes.TestPayload;
 import eu.pm.serdes.dslplatform.json.DslJsonDecoder;
-import eu.pm.serdes.dslplatform.json.DslJsonEncoder;
-import feign.Feign;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Response;
-import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
 
 /**
  * TODO : comment !
  *
  * @author silviu ilie
- * @since on http-clients
+ * @since on main
  **/
-
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Benchmark)
-@Fork(value = 1)
-@Warmup(iterations = 1, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-@Measurement(iterations = 1, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-public class Client {
-
-    public Feign defaultClient() {
-        return Feign.builder()
-                .decoder(new DslJsonDecoder())
-                .encoder(new DslJsonEncoder())
-                .build() ;
-    }
+public class DlsJsonDecoderTest {
 
     TestPayload body = new TestPayload("name","vlad ilie ");
     DslJsonDecoder decoder = new DslJsonDecoder();
@@ -54,6 +37,7 @@ public class Client {
 
     {
         dslJson.serialize(writer, TestPayload.class, body);
+        Map<String, Collection<String>> headers = Collections.emptyMap();
 
         response = Response.builder()
                 .status(200)
@@ -61,13 +45,13 @@ public class Client {
                 .request(
                         Request.create(Request.HttpMethod.GET,
                                 "url",
-                                new HashMap<>(),
+                                headers,
                                 writer.getByteBuffer(),
                                 Charset.defaultCharset(),
                                 new RequestTemplate()
                         )
                 )
-                .headers(Collections.emptyMap())
+                .headers(headers)
                 .body(writer.getByteBuffer())
                 .build();
 
@@ -75,8 +59,11 @@ public class Client {
         System.out.println(" =====  =====  ===== ");
 
     }
-    @Benchmark
-    public void decodeRun()throws IOException {
-        decoder.decode(response, TestPayload.class);
+
+    public static void main(String[] args) throws IOException {
+        DlsJsonDecoderTest decoderTest = new DlsJsonDecoderTest();
+        TestPayload out = (TestPayload) decoderTest.decoder.decode(decoderTest.response, TestPayload.class);
+        System.out.println("out = " + out);
     }
+
 }

@@ -1,8 +1,12 @@
-package eu.pm.serdes.dslplatform.json;
+package eu.pm;
 
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.runtime.Settings;
+import eu.pm.serdes.TestPayload;
+import eu.pm.serdes.dslplatform.json.DslJsonDecoder;
+import eu.pm.serdes.dslplatform.json.DslJsonEncoder;
+import feign.Feign;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Response;
@@ -10,10 +14,8 @@ import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,13 +23,20 @@ import java.util.concurrent.TimeUnit;
  * @since on http-clients
  **/
 
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 @Fork(value = 1)
 @Warmup(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
 @Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-public class DslJsonDecoderService {
+public class Benchmark {
+
+    public Feign defaultClient() {
+        return Feign.builder()
+                .decoder(new DslJsonDecoder())
+                .encoder(new DslJsonEncoder())
+                .build() ;
+    } 
 
     TestPayload body = new TestPayload("name","vlad ilie ");
     DslJsonDecoder decoder = new DslJsonDecoder();
@@ -61,34 +70,12 @@ public class DslJsonDecoderService {
                 .build();
 
 
-        System.out.println(" =====  =====  ===== ");
-
+        System.out.print("[init done] ");
     }
 
 
-    @Benchmark
+    @org.openjdk.jmh.annotations.Benchmark
     public void decodeRun()throws IOException {
-        TestPayload body = new TestPayload("name-goes-here", "value-goes-here");
-        dslJson.serialize(writer, TestPayload.class, body);
-
-        Map<String, Collection<String>> headers = Collections.emptyMap();
-
-        Response response = Response.builder()
-                .status(200)
-                .reason("OK")
-                .request(
-                        Request.create(Request.HttpMethod.GET,
-                                "url",
-                                headers,
-                                writer.getByteBuffer(),
-                                Charset.defaultCharset(),
-                                new RequestTemplate()
-                        )
-                )
-                .headers(headers)
-                .body(writer.getByteBuffer())
-                .build();
-
         decoder.decode(response, TestPayload.class);
     }
 }

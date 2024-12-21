@@ -11,6 +11,8 @@
 
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+
+        <jmh.version>1.35</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -34,6 +36,22 @@
             <artifactId>dsl-json</artifactId>
             <version>2.0.2</version>
         </dependency>
+
+
+
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -49,8 +67,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+<!--                    <source>1.7</source>-->
+<!--                    <target>1.7</target>-->
                     <!--
                         disabled annotation processor so only reflection is used
                     -->

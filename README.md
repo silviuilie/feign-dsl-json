@@ -9,8 +9,7 @@ public Feign defaultClient() {
             .decoder(new DslJsonDecoder())
             .encoder(new DslJsonEncoder())
             // ..  
-            .build()
-            ;
+            .build();
 }
 ```
 

@@ -26,6 +26,7 @@
             <artifactId>feign-dsl-json</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-core</artifactId>
@@ -41,6 +42,7 @@
             <artifactId>dsl-json</artifactId>
             <version>2.0.2</version>
         </dependency>
+        -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -80,7 +82,7 @@
                     <!--                    <compilerArgument>-proc:none</compilerArgument>-->
                 </configuration>
             </plugin>
-
+<!--
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -111,6 +113,7 @@
                     </systemProperties>
                 </configuration>
             </plugin>
+            -->
         </plugins>
     </build>
 

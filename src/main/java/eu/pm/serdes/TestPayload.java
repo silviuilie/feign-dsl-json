@@ -1,4 +1,4 @@
-package eu.pm.serdes.dslplatform.json;
+package eu.pm.serdes;
 
 import com.dslplatform.json.CompiledJson;
 
