@@ -10,8 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,6 +33,7 @@ public class DslJsonDecoderTest {
         TestPayload body = new TestPayload("name-goes-here", "value-goes-here");
         dslJson.serialize(writer, TestPayload.class, body);
 
+        Map<String, Collection<String>> headers = Collections.emptyMap();
 
         Response response = Response.builder()
                 .status(200)
@@ -39,13 +41,13 @@ public class DslJsonDecoderTest {
                 .request(
                         Request.create(Request.HttpMethod.GET,
                                 "url",
-                                new HashMap<>(),
+                                headers,
                                 writer.getByteBuffer(),
                                 Charset.defaultCharset(),
                                 new RequestTemplate()
                         )
                 )
-                .headers(Collections.emptyMap())
+                .headers(headers)
                 .body(writer.getByteBuffer())
                 .build();
 

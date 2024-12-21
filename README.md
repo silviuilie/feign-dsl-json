@@ -12,7 +12,11 @@ public Feign defaultClient() {
             .build()
             ;
 }
-```    
+```
+
+TODOs:
+
+- @Benchmark fails with  `Unable to find reader for provided type: class eu.pm.serdes.dslplatform.json.TestPayload and fallback serialization is not registered.`
 
 <!--
 ## issues : 
