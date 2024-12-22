@@ -16,6 +16,10 @@ public class TestPayload {
     public String name;
     public String value;
 
+    public TestPayload() {
+        //default for jackson tests
+    }
+
     public TestPayload(String name, String value) {
         this.name = name;
         this.value = value;
