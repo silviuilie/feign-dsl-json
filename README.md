@@ -1,5 +1,7 @@
 # [feign dsl-json](https://gitlab.com/mt4321138/feign-dsl-json) en/decoder
 
+[feign](https://github.com/OpenFeign/feign) encoder and decoder with [dsl-json](https://github.com/ngs-doo/dsl-json). 
+
 see benchmarks 
 
 # Usage :
