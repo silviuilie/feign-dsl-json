@@ -63,7 +63,7 @@ public class Benchmark {
 
 
     @org.openjdk.jmh.annotations.Benchmark
-    public void decodeRun() throws IOException {
-        decoder.decode(response, TestPayload.class);
+    public Object decodeRun() throws IOException {
+        return decoder.decode(response, TestPayload.class);
     }
 }

@@ -1,4 +1,5 @@
 **todo**
+- jmh jar
 - randomize input
 
 ### *Decoder
