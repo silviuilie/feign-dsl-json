@@ -13,6 +13,7 @@ variables:
 stages:
   - build
   - test
+  - benchmark
 
 build:
   stage: build
@@ -23,3 +24,9 @@ test:
   stage: test
   script:
     - mvn $MAVEN_CLI_OPTS verify
+
+benchmark:
+  stage: benchmark
+  script:
+    - cd mb
+    - mvn install
