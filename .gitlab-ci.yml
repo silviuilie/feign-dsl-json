@@ -33,5 +33,5 @@ benchmark:
   script:
     - cd mb
     - mvn clean install
-    - java -jar /target/feign-dsl-json-mb-1.0-SNAPSHOT.jar -rf json
+    - java -jar -cp ../target/feign-dsl-json-1.0-SNAPSHOT.jar /target/feign-dsl-json-mb-1.0-SNAPSHOT.jar -rf json
     - ls *.json
