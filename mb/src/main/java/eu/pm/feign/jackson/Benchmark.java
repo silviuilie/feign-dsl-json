@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
 public class Benchmark {
 
-    TestPayload body = new TestPayload("name", "vlad ilie ");
+    TestPayload body = new TestPayload("name", "random first name , last name");
     JacksonDecoder decoder = new JacksonDecoder();
 
 

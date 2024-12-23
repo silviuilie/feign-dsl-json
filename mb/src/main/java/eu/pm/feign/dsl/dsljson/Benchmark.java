@@ -1,4 +1,4 @@
-package eu.pm.feign.dsl.json;
+package eu.pm.feign.dsl.dsljson;
 
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
 public class Benchmark {
 
-    TestPayload body = new TestPayload("name", "vlad ilie ");
+    TestPayload body = new TestPayload("name", "random first name , last name");
     DslJsonDecoder decoder = new DslJsonDecoder();
 
     DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
