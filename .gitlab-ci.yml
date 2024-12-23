@@ -32,4 +32,4 @@ benchmark:
   stage: benchmark
   script:
     - cd mb
-    - mvn install
+    - java -jar target/feign-dsl-json-1.0-SNAPSHOT.jar -rf json
