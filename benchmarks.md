@@ -10,7 +10,6 @@
 
 DslJsonDecoder
 ```
-Result "eu.pm.feign.dsl.dsljson.Benchmark.decodeRun":
   5106.788 ±(99.9%) 940.449 ops/ms [Average]
   (min, avg, max) = (4700.236, 5106.788, 5291.572), stdev = 244.232
   CI (99.9%): [4166.339, 6047.237] (assumes normal distribution)
