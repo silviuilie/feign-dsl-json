@@ -19,6 +19,9 @@ build:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile
+  artifacts:
+    paths:
+      - target/feign-dsl-json-1.0-SNAPSHOT.jar
 
 test:
   stage: test
