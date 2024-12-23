@@ -2,7 +2,7 @@
 
 [feign](https://github.com/OpenFeign/feign) encoder and decoder with [dsl-json](https://github.com/ngs-doo/dsl-json). 
 
-see benchmarks 
+see [benchmarks](benchmarks.md) 
 
 # Usage :
 
