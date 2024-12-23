@@ -17,7 +17,13 @@ public Feign defaultClient() {
             // ..  
             .build();
 }
-``` 
+```
+
+
+## Other
+
+[mirror](https://github.com/silviuilie/feign-dsl-json)
+
 <!--
 ## issues : 
 
