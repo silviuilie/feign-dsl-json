@@ -36,6 +36,6 @@ benchmark:
     - find .m2/repository/eu -print
     - cd mb
     - mvn clean install
-    - find /target -print
+    - find ./target -print
     - java -jar -cp .m2/repository/eu/pm/feign-dsl-json/feign-dsl-json/1.0-SNAPSHOT/feign-dsl-json-1.0-SNAPSHOT.jar /target/feign-dsl-json-1.0-SNAPSHOT.jar -rf json
     - ls *.json
