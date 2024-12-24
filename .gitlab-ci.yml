@@ -33,7 +33,7 @@ benchmark:
   dependencies:
     - build
   script:
-    - ls .m2/repository/
+    - find .m2/repository/eu -print
     - ls .m2/repository/eu/pm/serdes/dslplatform
     - cd mb
     - mvn clean install
