@@ -1,10 +1,8 @@
 package eu.pm.feign;
 
 /**
- * TODO : comment !
- *
  * @author silviu ilie
- * @since on main
+ * @since 0.0.1
  **/
 
 public class decoderBenchmark {
