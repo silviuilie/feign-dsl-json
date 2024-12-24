@@ -30,6 +30,8 @@ test:
 
 benchmark:
   stage: benchmark
+  dependencies:
+    - build
   script:
     - cd mb
     - mvn clean install
