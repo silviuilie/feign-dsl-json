@@ -18,7 +18,7 @@ stages:
 build:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS compile
+    - mvn $MAVEN_CLI_OPTS install
   artifacts:
     paths:
       - target/feign-dsl-json-1.0-SNAPSHOT.jar
@@ -33,6 +33,8 @@ benchmark:
   dependencies:
     - build
   script:
+    - ls .m2/repository/
+    - ls .m2/repository/eu/pm/serdes/dslplatform
     - cd mb
     - mvn clean install
     - java -jar -cp ../target/feign-dsl-json-1.0-SNAPSHOT.jar /target/feign-dsl-json-mb-1.0-SNAPSHOT.jar -rf json
