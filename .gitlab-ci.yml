@@ -2,13 +2,13 @@ default:
   image: maven:3.8.5-openjdk-17
   cache:
     paths:
-      - .m2/repository/
+      - .m2/repository
       - target/
 
 variables:
 #  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   MAVEN_CLI_OPTS: " --batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
 
 stages:
   - build
