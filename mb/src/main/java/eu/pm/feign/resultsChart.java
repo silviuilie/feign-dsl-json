@@ -27,8 +27,6 @@ public class resultsChart {
 
                 String path = System.getProperty("user.dir") +
                         File.separator +
-                        "mb" +
-                        File.separator +
                         "jmh-result.json";
 
                 Object jmhResult = mapper.readValue(
