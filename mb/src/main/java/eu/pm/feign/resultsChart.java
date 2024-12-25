@@ -9,9 +9,7 @@ import org.knowm.xchart.style.Styler;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class resultsChart {
 
@@ -21,7 +19,7 @@ public class resultsChart {
         );
     }
 
-    public static class jmhResults {
+      static class jmhResults {
         static ObjectMapper mapper = new ObjectMapper();
 
         static Object load() {
@@ -54,7 +52,7 @@ public class resultsChart {
             // Create Chart
             CategoryChart chart =
                     new CategoryChartBuilder()
-                            .width(800)
+                            .width(1000)
                             .height(600)
                             .title("decoders")
                             .theme(Styler.ChartTheme.XChart)
