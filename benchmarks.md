@@ -10,7 +10,8 @@ sys : Darwin 22.5.0 Darwin Kernel Version 22.5.0: Mon Apr 24 20:51:50 PDT 2023; 
 # VM version: JDK 17.0.7, Java HotSpot(TM) 64-Bit Server VM, 17.0.7+8-LTS-224
 ```
 jmh Mode - Throughput,  
-![chart](./jmh-result.png)
+
+![chart](https://github.com/silviuilie/feign-dsl-json-benchmarks/blob/main/jmh-result.png?raw=true)
 
 
 details :
