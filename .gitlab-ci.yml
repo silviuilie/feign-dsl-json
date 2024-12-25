@@ -51,7 +51,8 @@ benchmark:
       git clone https://${BENCHRESULTS_GITHUB_ACTOR}:${BENCHRESULTS_GITHUB_TOKEN}@github.com/silviuilie/feign-dsl-json-benchmarks.git
       mv jmh-result.png feign-dsl-json-benchmarks/jmh-result.png  
       cd feign-dsl-json-benchmarks
-      git add -uv jmh-result.png
+      find . -print 
+      git add -uv .
       git commit -m "benchmark(update) new numbers"
       git push origin main
 
