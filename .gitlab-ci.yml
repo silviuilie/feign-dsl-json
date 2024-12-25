@@ -39,7 +39,7 @@ benchmark:
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.decoderBenchmark -rf json
 #  create chart with results
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.resultsChart
-    - find *.png -print
+    - find . -print
     - cp jmh-result.png benchmark/jmh-result.png
     - cd benchmark
 #      git add -uv ./jmh-result.png
