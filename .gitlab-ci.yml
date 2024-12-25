@@ -48,10 +48,7 @@ benchmark:
     - |
       git config --global user.name ${BENCHRESULTS_GITHUB_ACTOR}
       git config --global user.email ${BENCHRESULTS_GITHUB_ACTOR}@users.noreply.github.com
-#      git remote add github https://${BENCHRESULTS_GITHUB_ACTOR}:${BENCHRESULTS_GITHUB_TOKEN}@github.com/silviuilie/feign-dsl-json-benchmarks.git
       git clone https://${BENCHRESULTS_GITHUB_ACTOR}:${BENCHRESULTS_GITHUB_TOKEN}@github.com/silviuilie/feign-dsl-json-benchmarks.git
-#      git config pull.rebase false
-#      git pull github main
       mv jmh-result.png feign-dsl-json-benchmarks/jmh-result.png  
       cd feign-dsl-json-benchmarks
       git add -uv jmh-result.png
