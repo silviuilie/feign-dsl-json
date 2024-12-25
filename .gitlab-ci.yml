@@ -49,7 +49,8 @@ benchmark:
       git config --global user.name ${BENCHRESULTS_GITHUB_ACTOR}
       git config --global user.email ${BENCHRESULTS_GITHUB_ACTOR}@users.noreply.github.com
       git remote add github https://${BENCHRESULTS_GITHUB_ACTOR}:${BENCHRESULTS_GITHUB_TOKEN}@github.com/silviuilie/feign-dsl-json-benchmarks.git
-      git pull github
+      git config pull.rebase false
+      git pull github main
       git add -uv jmh-result.png
       git reset -- target
       git commit -m "benchmark(update): jmh result chart update"
