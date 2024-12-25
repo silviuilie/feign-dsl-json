@@ -40,4 +40,13 @@ benchmark:
 #  create chart with results
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.resultsChart
     - find *.png -print
+#      git add -uv ./jmh-result.png
+#      git reset -- target
+    - |
+      git config --global user.name ${BENCHRESULTS_GITHUB_ACTOR}
+      git config --global user.email ${BENCHRESULTS_GITHUB_ACTOR}@users.noreply.github.com
+      git add -uv ./jmh-result.png
+      git reset -- target
+      git commit -m "benchmark(update): jmh result chart update"
+      git push
 

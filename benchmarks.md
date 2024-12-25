@@ -1,7 +1,7 @@
 **todo** 
 - randomize input
 
-### *Decoder
+### Decoders benchmarks
 
 ```
 sys : Darwin 22.5.0 Darwin Kernel Version 22.5.0: Mon Apr 24 20:51:50 PDT 2023; root:xnu-8796.121.2~5/RELEASE_X86_64 x86_64
