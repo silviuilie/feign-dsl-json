@@ -40,7 +40,7 @@ benchmark:
 #  create chart with results
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.resultsChart
     - find *.png -print
-    - cp jmh-result.png benchmark/
+    - cp jmh-result.png benchmark/jmh-result.png
     - cd benchmark
 #      git add -uv ./jmh-result.png
 #      git add -uv ./jmh-result.png
