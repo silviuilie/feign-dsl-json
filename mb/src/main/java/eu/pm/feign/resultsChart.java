@@ -29,6 +29,8 @@ public class resultsChart {
                         File.separator +
                         "jmh-result.json";
 
+                System.out.println("jmh out path path " + path);
+
                 Object jmhResult = mapper.readValue(
                     new File(path).toURI().toURL(), Object.class
                 );
