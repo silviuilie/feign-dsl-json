@@ -55,7 +55,6 @@ benchmark:
       mv jmh-result.png feign-dsl-json-benchmarks/jmh-result.png  
       cd feign-dsl-json-benchmarks
       git add -uv jmh-result.png
-#      git reset -- target
-      git commit -m "benchmark(update): jmh result chart update"
+      git commit -m "benchmark(update) new numbers"
       git push origin main
 
