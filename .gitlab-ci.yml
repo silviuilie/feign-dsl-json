@@ -53,8 +53,12 @@ benchmark:
       mv jmh-result-decoders.png feign-dsl-json-benchmarks/jmh-result-decoders.png  
       mv jmh-result-decoders.json feign-dsl-json-benchmarks/jmh-result-decoders.json  
       cd feign-dsl-json-benchmarks
+      uname -r > jmh-run-system.out
+      lscpu | grep 'Model name' | cut -f 2 -d ":" > jmh-run-cpu.out
+      cat /proc/meminfo | grep MemTotal > jmh-run-mem.out
       git add jmh-result-decoders.png
       git add jmh-result-decoders.json
+      git add *.out
       git commit -m "benchmark(update) new numbers"
       git push origin main
 
