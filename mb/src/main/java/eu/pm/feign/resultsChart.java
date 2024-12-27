@@ -29,8 +29,6 @@ public class resultsChart {
                         File.separator +
                         "jmh-result.json";
 
-                System.out.println("jmh out path path " + path);
-
                 Object jmhResult = mapper.readValue(
                         new File(path).toURI().toURL(), Object.class
                 );
@@ -54,7 +52,7 @@ public class resultsChart {
                     new CategoryChartBuilder()
                             .width(1000)
                             .height(600)
-                            .title("decoders")
+                            .title("decoders/decoders -throughput")
                             .theme(Styler.ChartTheme.XChart)
                             .yAxisTitle(scoreUnit)
                             .xAxisTitle(benchMarkType)
