@@ -5,7 +5,8 @@ import com.dslplatform.json.CompiledJson;
 import java.util.Objects;
 
 /**
- * TODO : comment !
+ *
+ * TODO: move to separate package (for tests only)
  *
  * @author silviu ilie
  * @since 0.0.1 on feign-dsl-json

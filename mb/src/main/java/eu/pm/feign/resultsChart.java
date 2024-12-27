@@ -50,8 +50,8 @@ public class resultsChart {
             // Create Chart
             CategoryChart chart =
                     new CategoryChartBuilder()
-                            .width(1000)
-                            .height(600)
+                            .width(800)
+                            .height(1000)
                             .title("decoders/decoders -throughput")
                             .theme(Styler.ChartTheme.XChart)
                             .yAxisTitle(scoreUnit)
@@ -61,6 +61,7 @@ public class resultsChart {
             // Customize Chart
             chart.getStyler().setLegendPosition(Styler.LegendPosition.OutsideS);
             chart.getStyler().setPlotGridLinesVisible(true);
+            chart.getStyler().setLabelsVisible(true);
             chart.getStyler().setAvailableSpaceFill(.96);
 
             // Histogram histogram1 = new Histogram(getData(10000), 10, -10, 10);

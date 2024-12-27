@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author silviu ilie
- * @since on http-clients
+ * @since 1.0-SNAPSHOT
  **/
 
 @BenchmarkMode(Mode.Throughput)
