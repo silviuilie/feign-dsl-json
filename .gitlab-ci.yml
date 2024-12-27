@@ -54,7 +54,6 @@ benchmark:
       mv jmh-result-decoders.json feign-dsl-json-benchmarks/jmh-result-decoders.json  
       cd feign-dsl-json-benchmarks
       LINE="-------------------------------"
-      rm jmh-run-system.out
       echo $LINE >> jmh-run-system.out
       echo "About the system" >> jmh-run-system.out
       uname -a >> jmh-run-system.out
