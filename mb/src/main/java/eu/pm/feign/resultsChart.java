@@ -75,7 +75,7 @@ public class resultsChart {
 
                 LinkedHashMap primaryMetric = (LinkedHashMap) linkedHashMap.get("primaryMetric");
                 double absYValue = (double) primaryMetric.get("score");
-                double absYValueError = (Double) defaultIfNull(primaryMetric.get("scoreError"), "0");
+                double absYValueError = (Double) defaultIfNull(primaryMetric.get("scoreError"), 0);
 
                 scoreUnit = (String) primaryMetric.get("scoreUnit");
 
@@ -97,8 +97,14 @@ public class resultsChart {
             }
         }
 
-        private static Double defaultIfNull(Object scoreError, String defaultValue) {
-            return (((String) scoreError).equals("NaN") ? 0 : (double) scoreError);
+        private static Double defaultIfNull(Object scoreError, double defaultValue) {
+            try {
+                return (((String) scoreError).equals("NaN") ? 0 : (double) scoreError);
+            } catch (Exception e) {
+                System.out.println(" failed to cast  " + scoreError + " to double");
+                e.printStackTrace();
+            }
+            return defaultValue;
         }
     }
 

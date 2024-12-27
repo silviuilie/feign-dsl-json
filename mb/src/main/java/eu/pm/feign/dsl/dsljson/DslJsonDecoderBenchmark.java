@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 @Fork(value = 1)
 @Warmup(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-@Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
+@Measurement(iterations = 10, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
 public class DslJsonDecoderBenchmark {
 
     TestPayload body = new TestPayload("name", "random first name , last name");
