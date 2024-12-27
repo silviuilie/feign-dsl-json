@@ -40,8 +40,8 @@ benchmark:
 #  create chart with results
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.resultsChart
     - mkdir benchmark
-    - cp jmh-result.png benchmark/jmh-result-decoders.png
-    - cp jmh-result.json benchmark/jmh-result-decoders.json
+    - cp jmh-result.png benchmark/jmh-result-dsljson-jackson.png
+    - cp jmh-result.json benchmark/jmh-result-dsljson-jackson.json
     - cd benchmark
 #      git add -uv ./jmh-result.png
 #      git add -uv ./jmh-result.png
@@ -50,8 +50,8 @@ benchmark:
       git config --global user.name ${BENCHRESULTS_GITHUB_ACTOR}
       git config --global user.email ${BENCHRESULTS_GITHUB_ACTOR}@users.noreply.github.com
       git clone https://${BENCHRESULTS_GITHUB_ACTOR}:${BENCHRESULTS_GITHUB_TOKEN}@github.com/silviuilie/feign-dsl-json-benchmarks.git
-      mv jmh-result-decoders.png feign-dsl-json-benchmarks/jmh-result-decoders.png  
-      mv jmh-result-decoders.json feign-dsl-json-benchmarks/jmh-result-decoders.json  
+      mv jmh-result-dsljson-jackson.png feign-dsl-json-benchmarks/jmh-result-dsljson-jackson.png  
+      mv jmh-result-dsljson-jackson.json feign-dsl-json-benchmarks/jmh-result-dsljson-jackson.json  
       cd feign-dsl-json-benchmarks
       LINE="-------------------------------"
       echo "SYS" > jmh-run-system.out
