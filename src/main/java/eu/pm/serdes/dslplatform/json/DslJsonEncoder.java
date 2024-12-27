@@ -7,8 +7,10 @@ import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author silviu ilie
@@ -17,42 +19,32 @@ import java.lang.reflect.Type;
 public class DslJsonEncoder implements Encoder {
 
     DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
-
     //writer should be reused. For per thread reuse use ThreadLocal pattern
-    JsonWriter writer = dslJson.newWriter();
 
+    private static final ThreadLocal<ByteArrayOutputStream> THREAD_BYTE_ARRAY_OUTPUT_STREAM = ThreadLocal.withInitial(ByteArrayOutputStream::new);
+
+    public static ByteArrayOutputStream byteArrayOutputStream() {
+        ByteArrayOutputStream baos = THREAD_BYTE_ARRAY_OUTPUT_STREAM.get();
+        baos.reset();
+        return baos;
+    }
 
     public byte[] encoded(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
-
         this.encode(object, type, requestTemplate);
-
         return requestTemplate.body();
     }
 
     @Override
     public void encode(Object object, Type type, RequestTemplate requestTemplate) throws EncodeException {
-
         try {
-            dslJson.serialize(writer, object);
 
-            //resulting buffer with JSON
-            byte[] buffer = writer.getByteBuffer();
-            //end of buffer
-            int size = writer.size();
-
-            log("writer.size = " + size);
-            log("buffer.length = " + buffer.length);
-
-            requestTemplate.bodyTemplate(writer.toString());
+            ByteArrayOutputStream baos =  byteArrayOutputStream();
+            dslJson.serialize(object, baos);
+            requestTemplate.body(baos.toString(StandardCharsets.UTF_8));
 
         } catch (IOException e) {
             throw new EncodeException("failed to serialize with dsl-json with" + e.getMessage(), e);
         }
 
     }
-
-    private void log(String logLine) {
-        System.out.println(logLine);
-    }
-
 }

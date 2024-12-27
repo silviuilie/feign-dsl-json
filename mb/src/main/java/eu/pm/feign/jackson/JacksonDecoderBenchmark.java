@@ -1,13 +1,12 @@
-package eu.pm.feign.dsl.dsljson;
+package eu.pm.feign.jackson;
 
-import com.dslplatform.json.DslJson;
-import com.dslplatform.json.JsonWriter;
-import com.dslplatform.json.runtime.Settings;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.pm.serdes.TestPayload;
-import eu.pm.serdes.dslplatform.json.DslJsonDecoder;
 import feign.Request;
 import feign.RequestTemplate;
 import feign.Response;
+import feign.jackson.JacksonDecoder;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
@@ -17,30 +16,33 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * TODO : comment !
+ *
  * @author silviu ilie
- * @since on http-clients
+ * @since on main
  **/
-
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 @Fork(value = 1)
-@Warmup(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-@Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-public class Benchmark {
+@Warmup(iterations = 1, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
+@Measurement(iterations = 2, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
+public class JacksonDecoderBenchmark {
 
     TestPayload body = new TestPayload("name", "random first name , last name");
-    DslJsonDecoder decoder = new DslJsonDecoder();
+    JacksonDecoder decoder = new JacksonDecoder();
 
-    DslJson<Object> dslJson = new DslJson<>(Settings.basicSetup());
-    //writer should be reused. For per thread reuse use ThreadLocal pattern
-    JsonWriter writer = dslJson.newWriter();
 
     Response response;
 
     {
-        dslJson.serialize(writer, TestPayload.class, body);
-
+        ObjectMapper mapper = new ObjectMapper();
+        String payload = null;
+        try {
+              payload = mapper.writeValueAsString(body);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         response = Response.builder()
                 .status(200)
                 .reason("OK")
@@ -48,13 +50,13 @@ public class Benchmark {
                         Request.create(Request.HttpMethod.GET,
                                 "url",
                                 new HashMap<>(),
-                                writer.getByteBuffer(),
+                                payload.getBytes(),
                                 Charset.defaultCharset(),
                                 new RequestTemplate()
                         )
                 )
                 .headers(Collections.emptyMap())
-                .body(writer.getByteBuffer())
+                .body(payload.getBytes())
                 .build();
 
 
@@ -62,8 +64,9 @@ public class Benchmark {
     }
 
 
-    @org.openjdk.jmh.annotations.Benchmark
-    public Object decodeRun() throws IOException {
+    @Benchmark
+    public Object decode() throws IOException {
         return decoder.decode(response, TestPayload.class);
     }
+
 }

@@ -19,7 +19,7 @@ public class resultsChart {
         );
     }
 
-      static class jmhResults {
+    static class jmhResults {
         static ObjectMapper mapper = new ObjectMapper();
 
         static Object load() {
@@ -32,7 +32,7 @@ public class resultsChart {
                 System.out.println("jmh out path path " + path);
 
                 Object jmhResult = mapper.readValue(
-                    new File(path).toURI().toURL(), Object.class
+                        new File(path).toURI().toURL(), Object.class
                 );
 
                 return jmhResult;
@@ -69,7 +69,7 @@ public class resultsChart {
             // Series
             for (Object itemInSeriesObject : ((ArrayList) data)) {
                 LinkedHashMap linkedHashMap = (LinkedHashMap) itemInSeriesObject;
-                benchMarkType = " iterations : " +  linkedHashMap.get("measurementIterations") +
+                benchMarkType = " iterations : " + linkedHashMap.get("measurementIterations") +
                         ",time : " + linkedHashMap.get("measurementTime");
 
                 String xDataPoint = (String) linkedHashMap.get("measurementTime");
@@ -77,7 +77,7 @@ public class resultsChart {
 
                 LinkedHashMap primaryMetric = (LinkedHashMap) linkedHashMap.get("primaryMetric");
                 double absYValue = (double) primaryMetric.get("score");
-                double absYValueError = (Double) primaryMetric.get("scoreError");
+                double absYValueError = (Double) defaultIfNull(primaryMetric.get("scoreError"), "0");
 
                 scoreUnit = (String) primaryMetric.get("scoreUnit");
 
@@ -97,6 +97,10 @@ public class resultsChart {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+
+        private static Double defaultIfNull(Object scoreError, String defaultValue) {
+            return (((String) scoreError).equals("NaN") ? 0 : (double) scoreError);
         }
     }
 
