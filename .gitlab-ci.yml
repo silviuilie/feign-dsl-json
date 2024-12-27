@@ -58,7 +58,8 @@ benchmark:
       uname -a >> jmh-run-system.out
       echo $LINE >> jmh-run-system.out
       echo "cpu" >> jmh-run-system.out
-      lscpu -a > jmh-run-cpu.out
+      lscpu | grep 'Model name' >> jmh-run-system.out
+      lscpu | grep -E '^Thread|^Core|^Socket|^CPU\(' >> jmh-run-system.out
       echo $LINE >> jmh-run-system.out
       echo "memory total" >> jmh-run-system.out
       cat /proc/meminfo >> jmh-run-system.out
