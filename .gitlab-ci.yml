@@ -62,7 +62,7 @@ benchmark:
       echo $LINE >> jmh-run-system.out
       echo "MEM" >> jmh-run-system.out
       cat /proc/meminfo | grep -E '^MemTotal|^MemFree|^MemAvailable' >> jmh-run-system.out
-      git add jmh-result.* 
+      git add jmh-result* 
       git add jmh-run-system.out
       git commit -m "benchmark(update) new numbers"
       git push origin main
