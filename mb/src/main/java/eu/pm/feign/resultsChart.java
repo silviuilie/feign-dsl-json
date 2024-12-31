@@ -100,7 +100,7 @@ public class resultsChart {
 
         private static Double defaultIfNull(Object scoreError, double defaultValue) {
             try {
-                return (((String) scoreError).equals("NaN") ? 0 : Double.parseDouble((String) scoreError));
+                return (((String) scoreError).equals("NaN") ? 0 : Double.parseDouble(((String) scoreError).trim()));
             } catch (Exception e) {
                 System.out.println(" failed to cast  " + scoreError + " to double");
                 e.printStackTrace();
