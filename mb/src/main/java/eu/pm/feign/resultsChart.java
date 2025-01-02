@@ -50,8 +50,8 @@ public class resultsChart {
             // Create Chart
             CategoryChart chart =
                     new CategoryChartBuilder()
-                            .width(400)
-                            .height(500)
+                            .width(800)
+                            .height(1000)
                             .title("decoders/decoders -throughput")
                             .theme(Styler.ChartTheme.XChart)
                             .yAxisTitle(scoreUnit)
