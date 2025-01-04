@@ -34,7 +34,7 @@ benchmark:
     - build
   script:
     - cd mb
-    - mvn clean install
+    - mvn clean install -s settings.xml
 #  run benchmark
     - java -cp ./target/feign-dsl-json-mb-1.0-SNAPSHOT.jar eu.pm.feign.decoderBenchmark -rf json
 #  create chart with results
@@ -43,9 +43,7 @@ benchmark:
     - cp jmh-result.png benchmark/jmh-result-dsljson-jackson.png
     - cp jmh-result.json benchmark/jmh-result-dsljson-jackson.json
     - cd benchmark
-#      git add -uv ./jmh-result.png
-#      git add -uv ./jmh-result.png
-#      git reset -- target
+#      push to github
     - |
       git config --global user.name ${BENCHRESULTS_GITHUB_ACTOR}
       git config --global user.email ${BENCHRESULTS_GITHUB_ACTOR}@users.noreply.github.com
