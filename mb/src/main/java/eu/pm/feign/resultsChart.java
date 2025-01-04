@@ -64,7 +64,6 @@ public class resultsChart {
             chart.getStyler().setLabelsVisible(true);
             chart.getStyler().setAvailableSpaceFill(.96);
 
-            // Histogram histogram1 = new Histogram(getData(10000), 10, -10, 10);
             // Series
             for (Object itemInSeriesObject : ((ArrayList) data)) {
                 LinkedHashMap linkedHashMap = (LinkedHashMap) itemInSeriesObject;

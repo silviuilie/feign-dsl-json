@@ -20,13 +20,19 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/65701464/packages/maven</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>eu.pm.feign-dsl-json</groupId>
             <artifactId>feign-dsl-json</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.knowm.xchart</groupId>
@@ -57,6 +63,13 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${jmh.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>eu.pm.jmh-md-report</groupId>
+            <artifactId>jmh-md-report</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
