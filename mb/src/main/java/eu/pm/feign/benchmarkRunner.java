@@ -5,7 +5,7 @@ package eu.pm.feign;
  * @since 0.0.1
  **/
 
-public class decoderBenchmark {
+public class benchmarkRunner {
     public static void main(String[] args) throws Exception {
         org.openjdk.jmh.Main.main(args);
     }
